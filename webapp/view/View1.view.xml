@@ -1,0 +1,156 @@
+<mvc:View controllerName="com.kpmg.fidocpost.controller.View1"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns:u="sap.ui.unified"
+    xmlns="sap.m">
+    <Page id="page" title="{i18n>title}">
+         <customHeader>
+						<Bar id="idBar">
+							<contentMiddle>
+								<Label text="Read Data From Excel" id="idReadLabel"/>
+							</contentMiddle>
+							<contentRight>
+								<u:FileUploader id="FileUploaderId" sameFilenameAllowed="true" iconOnly="false" buttonOnly="true" fileType="XLSX,xlsx"
+									icon="sap-icon://upload" iconFirst="true" style="Emphasized" change="onUpload"/>
+							</contentRight>
+						</Bar>
+					</customHeader>
+					<content>
+                    <Panel headerText="Header Panel" id="idHeaderPanel">
+						<Table items="{headerModel>/items}" id="idTable" mode="MultiSelect">
+                        <headerToolbar>
+                            <OverflowToolbar id="otbSubheader">
+                                <ToolbarSpacer id="idHeaderToolbar"/>
+                                <Button id="editButton" text="Edit" type="Transparent"
+                                    press="onEditH" visible="{editable>/headerEdit}"/>
+                                <Button id="saveButton" text="Save" type="Transparent"
+                                    press="onSaveH" visible="{editable>/headerEditable}" />
+                                <Button id="cancelButton" text="Cancel" type="Transparent"
+                                    press="onCancelH" visible="{editable>/headerEditable}" />
+                                <Button id="addHeader" text="Add" type="Transparent"
+                                    press="onAddHeader" visible="{editable>/headerEditable}" />
+                                <Button id="addDelete" text="Delete" type="Transparent"
+                                    press="onDeleteHeader" visible="{editable>/headerEditable}" />    
+                            </OverflowToolbar>
+				        </headerToolbar>
+							<columns>
+								<Column id="idColumn1">
+									<Label text="BUKRS" id="idLColumn1"/>
+								</Column>
+								<Column id="idColumn2">
+									<Label text="BKTXT" id="idLColumn2"/>
+								</Column>
+								<Column id="idColumn3">
+									<Label text="XBLNR" id="idLColumn3"/>
+								</Column>
+								<Column id="idColumn4">
+									<Label text="BLDAT" id="idLColumn4"/>
+								</Column>
+                                <Column id="idColumn5">
+									<Label text="BUDAT" id="idLColumn5"/>
+								</Column>
+								<Column id="idColumn6">
+									<Label text="BLART" id="idLColumn6"/>
+								</Column>
+                                <Column id="idColumn7">
+									<Label text="Counter" id="idLColumn7"/>
+								</Column>
+							</columns>
+							<items>
+								<ColumnListItem id="idCListItem">
+									<cells>
+										<Input value="{headerModel>Bukrs}" id="idItemList1" editable="{editable>/headerEditable}" maxLength="4" 
+                                            showValueHelp="true" valueHelpRequest="handleBukrs"/>
+										<Input value="{headerModel>BKTXT}" id="idItemList2" editable="{editable>/headerEditable}" maxLength="25"/>
+										<Input value="{headerModel>XBLNR}" id="idItemList3" editable="{editable>/headerEditable}" maxLength="16"/>
+										<DatePicker  id="idItemList4" editable="{editable>/headerEditable}" 	
+                                        value="{path:'headerModel>BLDAT',   formatOptions: {pattern: 'dd/MM/yyyy', strictParsing: true , UTC: true}}"
+                                        displayFormat ="dd/MM/yyyy" 
+                                        />
+                                         <DatePicker  id="idItemList5" editable="{editable>/headerEditable}"  
+                                         value="{path:'headerModel>BUDAT', formatOptions: {pattern: 'dd/MM/yyyy', strictParsing: true , UTC: true}}"
+                                         displayFormat ="dd/MM/yyyy" 
+			                           />
+										<Input value="{headerModel>BLART}" id="idItemList6" editable="{editable>/headerEditable}" maxLength="2"/>
+                                        <Input value="{headerModel>Counter}" id="idItemList7" editable="{editable>/headerEditable}" maxLength="2"/>
+									</cells>
+								</ColumnListItem>
+							</items>
+						</Table>
+                        </Panel>
+                        <Panel headerText="Item Panel" id="idItemPanel">
+                        <Table items="{itemModel>/items}" id="idItemTable" mode="MultiSelect">
+                        <headerToolbar>
+                            <OverflowToolbar id="otbSubItemheader">
+                                <ToolbarSpacer id="idItemToolbar"/>
+                                <Button id="editButtonItem" text="Edit" type="Transparent"
+                                    press="onEditI" visible="{editable>/headerEditItem}"/>
+                                <Button id="saveButtonItem" text="Save" type="Transparent"
+                                    press="onSaveI" visible="{editable>/itemEditable}" />
+                                <Button id="cancelButtonItem" text="Cancel" type="Transparent"
+                                    press="onCancelI" visible="{editable>/itemEditable}" />
+                                <Button id="addHeaderItem" text="Add" type="Transparent"
+                                    press="addHeaderItem" visible="{editable>/itemEditable}" />
+                                <Button id="addDeleteItem" text="Delete" type="Transparent"
+                                    press="onDeleteHeaderItem" visible="{editable>/itemEditable}" />    
+                            </OverflowToolbar>
+				        </headerToolbar>
+							<columns>
+								<Column id="idItemColumn1">
+									<Label text="SGTXT" id="idItemLColumn1"/>
+								</Column>
+								<Column id="idItemColumn2">
+									<Label text="LIFNR" id="idItemLColumn2"/>
+								</Column>
+								<Column id="idItemColumn3">
+									<Label text="KUNNR" id="idItemLColumn3"/>
+								</Column>
+								<Column id="idItemColumn4">
+									<Label text="HKONT" id="idItemLColumn4"/>
+								</Column>
+                                <Column id="idItemColumn5">
+									<Label text="WRBTR_S" id="idItemLColumn5"/>
+								</Column>
+								<Column id="idItemColumn6">
+									<Label text="WRBTR_H" id="idItemLColumn6"/>
+								</Column>
+                                <Column id="idItemColumn7">
+									<Label text="WAERS" id="idItemLColumn7"/>
+								</Column>
+								<Column id="idItemColumn8">
+									<Label text="MWSKZ" id="idItemLColumn8"/>
+								</Column>
+                                <Column id="idItemColumn9">
+									<Label text="Counter" id="idItemLColumn9"/>
+								</Column>
+							</columns>
+							<items>
+								<ColumnListItem id="idItemCListItem">
+									<cells>
+                                    
+										<Input value="{itemModel>SGTXT}" id="idIItemList1" editable="{editable>/itemEditable}" maxLength="50"/>
+										<Input value="{itemModel>LIFNR}" id="idIItemList2" editable="{editable>/itemEditable}" maxLength="10" 
+                                            showValueHelp="true" valueHelpRequest="handleLifnr"/>
+										<Input value="{itemModel>KUNNR}" id="idIItemList3" editable="{editable>/itemEditable}" maxLength="10"
+                                        showValueHelp="true" valueHelpRequest="handleKunnr"/>
+										<Input value="{itemModel>HKONT}" id="idIItemList4" editable="{editable>/itemEditable}" maxLength="10"
+                                        showValueHelp="true" valueHelpRequest="handleHkont"/>
+                                        <Input value="{itemModel>WRBTR_S}" id="idIItemList5" editable="{editable>/itemEditable}" maxLength="25"/>
+										<Input value="{itemModel>WRBTR_H}" id="idIItemList6" editable="{editable>/itemEditable}" maxLength="25"/>
+                                        <Input value="{itemModel>WAERS}" id="idIItemList7" editable="{editable>/itemEditable}" maxLength="5"
+                                        showValueHelp="true" valueHelpRequest="handleWaers"/>
+										<Input value="{itemModel>MWSKZ}" id="idIItemList8" editable="{editable>/itemEditable}" maxLength="2"/>
+                                        <Input value="{itemModel>Counter}" id="idIItemList9" editable="{editable>/itemEditable}" maxLength="2"/>
+									</cells>
+								</ColumnListItem>
+							</items>
+						</Table>
+                        </Panel>
+					</content>
+                    <footer>
+					<Toolbar id="idToolbar">
+						<ToolbarSpacer id="idToolbarspacer"/>
+                        <Button text="Check" press="onCheck" id="buttonCheck"/>
+						<Button text="Send" press="onPost" id="buttonSend"/>
+					</Toolbar>
+				</footer>
+    </Page>
+</mvc:View>
